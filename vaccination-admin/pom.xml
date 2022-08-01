@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.vaccination</groupId>
+        <artifactId>vaccination</artifactId>
+        <version>1.0.0</version>
+        <!--<relativePath/>--> <!-- lookup parent from repository -->
+    </parent>
+   <!-- <groupId>com.vaccination-admin</groupId>-->
+    <artifactId>vaccination-admin</artifactId>
+    <!--<version>0.0.1-SNAPSHOT</version>
+    <name>vaccination-admin</name>
+    <description>Demo project for Spring Boot</description>-->
+    <properties>
+        <vaccination.version>1.0.0</vaccination.version>
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.vaccination</groupId>
+            <artifactId>common-web</artifactId>
+            <version>${vaccination.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>com.hcmis.loan</groupId>
+            <artifactId>common-security</artifactId>
+            <version>${hades.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>../lib/</classpathPrefix>
+                            <!--jar包不包含唯一版本标识-->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <mainClass>com.hcmis.loan.HadesAdminApplication</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>../conf/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <excludes >
+                        <exclude>*.yml</exclude>
+                        <exclude>prod/**</exclude>
+                        <exclude>static/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-lib</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/lib</outputDirectory>
+                            <excludeTransitive>false</excludeTransitive>
+                            <stripVersion>false</stripVersion>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <!-- 打包后的包名是否包含assembly的id名 -->
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <!-- 指定最后tar或者zip包的名字 -->
+                    <finalName>hades-admin</finalName>
+                    <!-- tar或者zip包的输出目录 -->
+                    <!-- ../ 是指当前项目的根目录 ，例如：F:\pvpsddp\pvpsddp-gateway 的上一级-->
+                    <outputDirectory>target/tar</outputDirectory>
+                    <descriptors>
+                        <!-- 引用的assembly配置文件，可以用多个，即可以同时打包多个格式的包 -->
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <!-- phase加入package后，则在执行maven package时就可以调用maven-assembly-plugin插件定义的打包方式 -->
+                    <execution>
+                        <!--名字任意 -->
+                        <id>make-assembly</id>
+                        <!-- 绑定到package生命周期阶段上 -->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 只运行一次 -->
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 打包环境 -->
+    <profiles>
+        <profile>
+            <!-- 开发环境 -->
+            <id>dev</id>
+            <properties>
+                <environment>development</environment><!-- 节点名字environment是自己随意取的 -->
+                <profiles.active>.</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault><!-- 默认激活该profile节点 -->
+            </activation>
+        </profile>
+        <profile>
+            <!-- 生产环境 -->
+            <id>prod</id>
+            <properties>
+                <environment>production</environment>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 生产环境 -->
+            <id>prod-gsl</id>
+            <properties>
+                <environment>production</environment>
+                <profiles.active>prod-gsl</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

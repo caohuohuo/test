@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.vaccination</groupId>
+        <artifactId>vaccination</artifactId>
+        <version>1.0.0</version>
+        <!--<relativePath/>--> <!-- lookup parent from repository -->
+    </parent>
+    <!--<groupId>com.vaccination</groupId>-->
+    <artifactId>vaccination-commons</artifactId>
+    <!--<version>0.0.1-SNAPSHOT</version>
+    <name>vaccination-common</name>
+    <description>Demo project for Spring Boot</description>-->
+    <packaging>pom</packaging>
+    <modules>
+        <module>common-web</module>
+        <module>common-mybatis</module>
+        <module>common-core</module>
+    </modules>
+    <properties>
+        <mysql.version>8.0.19</mysql.version>
+        <druid.version>1.1.22</druid.version>
+        <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <redisson.version>3.12.5</redisson.version>
+        <common-pools.version>2.8.0</common-pools.version>
+        <vaccination.version>1.0.0</vaccination.version>
+        <dozer.version>6.2.0</dozer.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- mysql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- redisson -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${common-pools.version}</version>
+            </dependency>
+
+            <!--<dependency>
+                <groupId>com.hcmis.loan</groupId>
+                <artifactId>common-web</artifactId>
+                <version>${hades.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hcmis.loan</groupId>
+                <artifactId>common-mybatis</artifactId>
+                <version>${hades.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hcmis.loan</groupId>
+                <artifactId>common-pojo</artifactId>
+                <version>${hades.version}</version>
+            </dependency>-->
+
+            <dependency>
+                <groupId>com.github.dozermapper</groupId>
+                <artifactId>dozer-core</artifactId>
+                <version>${dozer.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>
