@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/vaccination-commons/common-core/common-core.iml" filepath="$PROJECT_DIR$/vaccination-commons/common-core/common-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vaccination-commons/common-mybatis/common-mybatis.iml" filepath="$PROJECT_DIR$/vaccination-commons/common-mybatis/common-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vaccination-commons/common-web/common-web.iml" filepath="$PROJECT_DIR$/vaccination-commons/common-web/common-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vaccination.iml" filepath="$PROJECT_DIR$/vaccination.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vaccination-admin/vaccination-admin.iml" filepath="$PROJECT_DIR$/vaccination-admin/vaccination-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vaccination-common/vaccination-common.iml" filepath="$PROJECT_DIR$/vaccination-common/vaccination-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vaccination-commons/vaccination-commons.iml" filepath="$PROJECT_DIR$/vaccination-commons/vaccination-commons.iml" />
+    </modules>
+  </component>
+</project>
